@@ -83,7 +83,7 @@ void loop()
 
     difPressure = SDP6x.GetPressureDiff();
 
-    Serial.print(difPressure);
+    Serial.print(difPressure,5);
     Serial.print("\n");
 
     if (difPMin > difPressure)

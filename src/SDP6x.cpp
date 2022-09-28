@@ -76,7 +76,7 @@ bool SDP6xClass::readSensor(uint8_t command, uint16_t *res)
 	Wire.beginTransmission(eSDP6xAddress); // begin
 	Wire.write(command);				   // send the pointer location
 	// delay(100);
-	delay(20); /// jli
+	delay(50); /// jli
 
 	Wire.endTransmission(); // end
 
