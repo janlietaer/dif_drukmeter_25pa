@@ -12,6 +12,7 @@ TFT_eSPI tft = TFT_eSPI(135, 240); // Invoke custom library
 uint16_t error;
 char errorMessage[256];
 float difPressure;
+float speed;
 
 float difPMin = 500, difPMax = -50, Tmin = 100, Tmax = -100;
 uint16_t refreshrate;
@@ -83,8 +84,13 @@ void loop()
 
     difPressure = SDP6x.GetPressureDiff();
 
-    Serial.print(difPressure,5);
-    Serial.print("\n");
+    speed = sqrt(abs((2*difPressure) / 1.2));
+
+
+    Serial.print(difPressure, 5);
+
+    Serial.print("\t");
+    Serial.println(speed, 5);
 
     if (difPMin > difPressure)
     {
@@ -113,6 +119,8 @@ void loop()
             extreem = false;
         }
         tft.drawString(" Druk: " + String(difPressure, 3) + " Pa      ", 0, 0, 4);
+
+        tft.drawString(" Snel: " + String(speed, 3) + " m/s      ", 0, 60, 4);
 
         refreshrate = 0;
     }
