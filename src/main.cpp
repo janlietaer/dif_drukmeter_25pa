@@ -36,6 +36,7 @@ void setup()
     }
 
     Wire.begin();
+    Wire.setClock(400000);
     pinMode(BUTTON1PIN, INPUT);
 
     tft.init();
